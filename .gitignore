@@ -18,6 +18,11 @@
 .env.test.local
 .env.production.local
 
+/api/api/database.db
+/api/venv/.*
+/api/__pycache__
+/api/api/__pycache__
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json
