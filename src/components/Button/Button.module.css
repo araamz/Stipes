@@ -1,0 +1,25 @@
+@media only screen and (min-width: 300px) {
+  .Button {
+    background: #90a4ae;
+    text-decoration: none !important;
+    display: flex;
+    width: fit-content;
+    padding: 6px;
+    gap: 5px;
+    align-items: center;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+  }
+  .Button > p {
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .Button > span {
+    color: white;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+}
