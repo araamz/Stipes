@@ -1,29 +1,29 @@
 @media only screen and (min-width: 300px) {
-    .main-page {
-        margin: 50px auto 0 auto;
-        width: 90%;
-        max-width: 400px;
-    }
-    nav {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 10px;
-    }
-    .page-title {
-        font-size: 40px;
-        font-weight: 700;
-    }
+  .container {
+    margin: 50px auto 0 auto;
+    width: 90%;
+    max-width: 400px;
+  }
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .page-title {
+    font-size: 40px;
+    font-weight: 700;
+  }
 }
 
 @media only screen and (min-width: 600px) {
-    .main-page {
-        margin: 50px auto 0 auto;
-        width: 90%;
-        max-width: 600px;
-    }
-    nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
+  .container {
+    margin: 50px auto 0 auto;
+    width: 90%;
+    max-width: 600px;
+  }
+  nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }

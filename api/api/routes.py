@@ -1,5 +1,7 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+import json
 from api import api
+from api import db
 from api.models import Story
 from api.models import Goal
 from api.serializers import story_serializer
@@ -14,6 +16,17 @@ def view_stories():
 def view_story(story_id):
 
     return jsonify([*map(goal_serializer, Story.query.filter_by(id = story_id).first().goals)])
+
+@api.route("/api/create", methods=["POST"])
+def create_story():
+
+    request_message = request.get_json().get('content')
+    story = Story(content=request_message)
+    db.session.add(story)
+    db.session.commit()
+    
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+    
 
 @api.route("/api/<int:story_id>/finish", methods=["POST"])
 def finish_story(story_id):

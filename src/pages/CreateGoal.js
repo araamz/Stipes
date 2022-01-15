@@ -1,25 +1,25 @@
 import React from "react";
 
-function CreateGoal(props) {
-
+class CreateGoal extends React.Component {
+  render() {
     return (
-
-        <div className="sub-page">
-
-            <div>
-                <p>
-
-                    Making a goal
-
-                </p>    
-            </div>
-            
-
+      <div>
+        <div>
+          <p>
+            Creating a user story entails the format of "As a (description of
+            user), I want (functionality) so that (benefit)." This format can be
+            used as a convention to create a new User Story.
+          </p>
         </div>
-
+        <div>
+          <form>
+            <textarea></textarea>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      </div>
     );
-
-
+  }
 }
 
 export default CreateGoal;

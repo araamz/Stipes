@@ -1,12 +1,10 @@
 @media only screen and (min-width: 300px) {
-    .ViewStories {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
+  .ViewStories {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
 }
 
 @media only screen and (min-width: 600px) {
-    .ViewStories {
-    }
 }
