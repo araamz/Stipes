@@ -6,7 +6,6 @@ class Story(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, nullable=False)
-    finished = db.Column(db.Boolean, default=False, server_default="False")
 
     goals = db.relationship("Goal", backref="story", lazy="dynamic", cascade="all, delete-orphan")
 

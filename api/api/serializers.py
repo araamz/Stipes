@@ -4,7 +4,6 @@ def story_serializer(story):
 
         "id": story.id,
         "content": story.content,
-        "finished": story.finished
 
     }
 

@@ -5,7 +5,9 @@ import { NavLink } from "react-router-dom";
 function SectionNavLink(props) {
   return (
     <NavLink
+      end
       to={props.to}
+      state={props.state}
       className={({ isActive }) =>
         isActive
           ? `${styles.active} ${styles.SectionNavLink}`

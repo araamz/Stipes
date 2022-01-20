@@ -9,6 +9,7 @@
     align-items: center;
     border-radius: 4px;
     outline: none;
+    transition: ease-out box-shadow 1s;
     border: none;
   }
   .Button > p {
@@ -18,6 +19,10 @@
   }
   .Button > span {
     color: white;
+    font-size: 15px;
+  }
+  .Button:hover {
+    box-shadow: 0 2px 5px 1px lightgray;
   }
 }
 

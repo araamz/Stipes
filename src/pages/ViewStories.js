@@ -17,7 +17,7 @@ function ViewStories(props) {
   return (
     <div className={styles.ViewStories}>
       {stories.map((story) => (
-        <Story to={`/${story.id}`} finished={story.finished} key={story.id}>
+        <Story to={`/${story.id}`} key={story.id}>
           {story.content}
         </Story>
       ))}

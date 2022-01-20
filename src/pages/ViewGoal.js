@@ -1,6 +1,6 @@
 import React from "react";
 
-function ViewGoal(_props) {
+function ViewGoal(props) {
   return (
     <div>
       <div>

@@ -11,7 +11,7 @@ function App() {
         <SectionNavLink to="/" icon="list" color="#FFB74D">
           View Stories
         </SectionNavLink>
-        <SectionNavLink to="create" icon="add" color="#81C784">
+        <SectionNavLink to="/create" icon="add" color="#81C784">
           New Story
         </SectionNavLink>
       </nav>

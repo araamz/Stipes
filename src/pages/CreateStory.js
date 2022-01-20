@@ -53,18 +53,14 @@ class CreateStory extends React.Component {
         ) : (
           ""
         )}
-        <div className={styles.form}>
-          <form>
-            <textarea
-              className={styles.textarea}
-              value={this.state.value}
-              onChange={this.handleChange}
-            ></textarea>
-            <Button type="submit" color="#81C784" onClick={this.handleSubmit}>
-              Create
-            </Button>
-          </form>
-        </div>
+        <textarea
+          className={styles.textarea}
+          value={this.state.value}
+          onChange={this.handleChange}
+        ></textarea>
+        <Button type="submit" color="#81C784" onClick={this.handleSubmit}>
+          Create
+        </Button>
       </div>
     );
   }
