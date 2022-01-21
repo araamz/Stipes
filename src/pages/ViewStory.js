@@ -4,7 +4,7 @@ import SectionNavLink from "../components/SectionNavLink/SectionNavLink";
 
 function ViewStory(props) {
   let { story_id } = useParams();
-  const [CurrentStory, setCurrentStory] = useState({});
+  const [story, setStory] = useState({});
 
   useEffect(() => {
     fetch(`/api/${story_id}`)
@@ -13,13 +13,14 @@ function ViewStory(props) {
           return response.json();
         }
       })
-      .then((data) => setCurrentStory(data));
+      .then((data) => setStory(data));
   }, []);
+
   return (
     <div className="container">
       <p className="page-subtitle">
-        <span className="bold"> User Story: </span> {CurrentStory.content} (ID-
-        {CurrentStory.id})
+        <span className="bold"> User Story: </span> {story.content} (ID-
+        {story.id})
       </p>
       <nav>
         <SectionNavLink to="/" icon="list" color="#FFB74D">
@@ -36,7 +37,7 @@ function ViewStory(props) {
         </SectionNavLink>
       </nav>
       <div className="page-section">
-        <Outlet context={[CurrentStory, setCurrentStory]}></Outlet>
+        <Outlet context={[story, setStory]}></Outlet>
       </div>
     </div>
   );

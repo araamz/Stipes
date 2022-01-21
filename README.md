@@ -14,9 +14,9 @@ The application's backend consists of ten points. The routing scheme contains tw
 |    |    |    |    |----edit/status
 |    |    |    |    |----edit/content
 |    |    |    |    |----delete
+|    |    |    |----create
 |    |    |----delete
 |    |    |----edit
-|    |    |----create
 |    |----create
 ```
 

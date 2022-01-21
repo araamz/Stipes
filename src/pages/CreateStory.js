@@ -6,20 +6,22 @@ class CreateStory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
-      successful: false,
+      story: "",
       submittedStory: "",
+      successful: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChange(event) {
     this.setState({
-      value: event.target.value,
+      story: event.target.value,
     });
   }
+
   handleSubmit(event) {
-    if (this.state.value === "") {
+    if (this.state.story === "") {
       alert("Please enter a message.");
     } else {
       fetch("/api/create", {
@@ -28,16 +30,17 @@ class CreateStory extends React.Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          content: this.state.value,
+          content: this.state.story,
         }),
       });
     }
     this.setState({
       successful: true,
-      submittedStory: this.state.value,
+      submittedStory: this.state.story,
     });
     event.preventDefault();
   }
+
   render() {
     return (
       <div className={styles.CreateStory}>
@@ -55,9 +58,9 @@ class CreateStory extends React.Component {
         )}
         <textarea
           className={styles.textarea}
-          value={this.state.value}
+          value={this.state.story}
           onChange={this.handleChange}
-        ></textarea>
+        />
         <Button type="submit" color="#81C784" onClick={this.handleSubmit}>
           Create
         </Button>

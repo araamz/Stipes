@@ -95,14 +95,14 @@ def edit_story(story_id):
 
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
-@api.route("/api/<int:story_id>/create", methods=["POST"])
+@api.route("/api/<int:story_id>/goals/create", methods=["POST"])
 def create_goal(story_id):
 
     content = request.get_json().get('content')
     goal_record = Goal(content=content)
-    story_record = Story.query.filter_by(id = story_id)
+    story_record = Story.query.filter_by(id = story_id).first()
 
-    story_record.goals.add(goal_record)
+    story_record.goals.append(goal_record)
     db.session.commit()
     
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'}

@@ -11,17 +11,14 @@ import styles from "./EditStory.module.css";
 
 function EditStory(props) {
   let { story_id } = useParams();
-  const location = useLocation();
   let navigate = useNavigate();
-  console.log(location);
-  const [CurrentStory, setCurrentStory] = useOutletContext();
-  const [story, setStory] = useState("");
-  const [successful, setSuccessful] = useState(false);
+  const [story, setStory] = useOutletContext();
   const [submittedStory, setSubmittedStory] = useState("");
+  const [successful, setSuccessful] = useState(false);
 
-  async function handleDelete(event) {
+  function handleDelete(event) {
     event.preventDefault();
-    await fetch(`/api/${story_id}/delete`, {
+    fetch(`/api/${story_id}/delete`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -29,11 +26,13 @@ function EditStory(props) {
     });
     navigate("/");
   }
+
   function handleChange(event) {
-    setStory(event.target.value);
+    setSubmittedStory(event.target.value);
   }
+
   function handleSubmit(event) {
-    if (story === "") {
+    if (submittedStory === "") {
       alert("Please enter a message.");
     } else {
       fetch(`/api/${story_id}/edit`, {
@@ -42,14 +41,11 @@ function EditStory(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          content: story,
+          content: submittedStory,
         }),
       });
-
-      setCurrentStory({ content: story, id: story_id });
-      setSubmittedStory(story);
+      setStory({ content: submittedStory, id: story_id });
       setSuccessful(true);
-      event.preventDefault();
     }
   }
 
@@ -68,9 +64,9 @@ function EditStory(props) {
       )}
       <textarea
         onChange={handleChange}
-        value={story}
+        value={submittedStory}
         className={styles.textarea}
-      ></textarea>
+      />
       <div className={styles.options}>
         <Button type="submit" color="#81C784" onClick={handleSubmit}>
           Edit
