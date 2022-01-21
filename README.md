@@ -8,14 +8,14 @@ The application's backend consists of ten points. The routing scheme contains tw
 
 ```
 |----/api/
-|    |----/(story_id)/
-|    |    |----/(goal_id)/goals
-|    |    |    |----/edit/status
-|    |    |    |----/edit/content
-|    |    |----/delete
-|    |    |----/edit
-|    |    |----/create
-|    |----/create
+|    |----(story_id)/
+|    |    |----goals/(goal_id)/
+|    |    |    |----edit/status
+|    |    |    |----edit/content
+|    |    |----delete
+|    |    |----edit
+|    |    |----create
+|    |----create
 ```
 
 #### Route Descriptions
