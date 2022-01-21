@@ -22,7 +22,7 @@ def view_story(story_id):
     return jsonify(story_serializer(story_record))
 
 @api.route("/api/<int:story_id>/goals", methods=["GET"])
-def delete_story(story_id):
+def view_goals(story_id):
 
     goal_records = Story.query.filter_by(id = story_id).first().goals
     
@@ -35,6 +35,43 @@ def view_goal(story_id, goal_id):
     goal_record = goal_records.filter_by(id = goal_id).first()
 
     return jsonify(goal_serializer(goal_record))
+
+@api.route("/api/<int:story_id>/goals/<int:goal_id>/edit/status", methods=["PATCH"])
+def change_goal_status(story_id, goal_id): 
+
+    status = request.get_json().get('status')
+
+    goal_records = Story.query.filter_by(id = story_id).goals
+    goal_record = goal_records.filter_by(id = goal_id).first()
+    goal_record.status = status
+
+    db.session.commit()
+
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+
+@api.route("/api/<int:story_id>/<int:goal_id>/edit/content", methods=["PATCH"])
+def edit_goal(story_id, goal_id): 
+
+    content = request.get_json().get('status')
+
+    goal_records = Story.query.filter_by(id = story_id).goals
+    goal_record = goal_records.filter_by(id = goal_id).first()
+    goal_record.content = content
+
+    db.session.commit()
+
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+
+@api.route("/api/<int:story_id>/<int:goal_id>/delete", methods=["POST"])
+def delete_goal(story_id, goal_id):
+    
+    goal_records = Story.query.filter_by(id = story_id).goals
+    goal_record = goal_records.filter_by(id = goal_id).first()
+
+    goal_record.delete()
+    db.session.commit()
+
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 @api.route("/api/<int:story_id>/delete", methods=["DELETE"])
 def delete_story(story_id):
@@ -79,31 +116,4 @@ def create_story():
     db.session.add(story_record)
     db.session.commit()
     
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
-
-@api.route("/api/<int:story_id>/<int:goal_id>/edit/status", methods=["POST"])
-def change_goal_status(story_id, goal_id): 
-
-    status = request.get_json().get('status')
-    goal_reocrd = Goal.query.filter_by(id = goal_id).first()
-    goal_reocrd.status = status
-    db.session.commit()
-
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
-
-@api.route("/api/<int:story_id>/<int:goal_id>/edit/content", methods=["POST"])
-def edit_goal(story_id, goal_id): 
-
-    content = request.get_json().get('content')
-    goal_reocrd = Goal.query.filter_by(id = goal_id).first()
-    goal_reocrd.content = content
-
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
-
-@api.route("/api/<int:story_id>/<int:goal_id>/delete", methods=["POST"])
-def delete_goal(story_id, goal_id):
-    
-    goal = Story.query.filter_by(id = goal_id).delete()
-    db.session.commit()
-
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
