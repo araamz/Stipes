@@ -1,0 +1,30 @@
+@media only screen and (min-width: 300px) {
+  .story {
+    border: 3px solid black;
+    padding: 10px;
+    border-radius: 4px;
+    transition: ease-out box-shadow 1s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none !important;
+  }
+  .story > p {
+    font-weight: 700;
+    color: black;
+  }
+  .story:hover {
+    box-shadow: 0 2px 5px 1px lightgray;
+  }
+  .todo {
+    background: #ffcdd2;
+  }
+  .inprogress {
+    background: #ffe0b2;
+  }
+  .completed {
+    background: #c8e6c9;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+}
