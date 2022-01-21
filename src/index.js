@@ -23,7 +23,7 @@ ReactDOM.render(
           <Route index element={<ViewGoals />} />
           <Route path="edit" element={<EditStory />} />
           <Route path="create" element={<CreateGoal />} />
-          <Route path=":/goal_id" element={<ViewGoal />} />
+          <Route path=":goal_id" element={<ViewGoal />} />
         </Route>
       </Routes>
     </BrowserRouter>
