@@ -9,10 +9,9 @@ The application's backend consists of ten points. The routing scheme contains tw
 ```
 |----/api/
 |    |----/(story_id)/
-|    |    |----/(goal_id)/
-|    |    |    |----/edit/
-|    |    |    |    |----/status
-|    |    |    |    |----/content
+|    |    |----/(goal_id)/goals
+|    |    |    |----/edit/status
+|    |    |    |----/edit/content
 |    |    |----/delete
 |    |    |----/edit
 |    |    |----/create
