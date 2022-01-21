@@ -10,12 +10,9 @@ from api.serializers import goal_serializer
 @api.route("/api", methods=["GET"])
 def view_stories():
     
-    return jsonify([*map(story_serializer, Story.query.all())])
+    story_records = Story.query.all()
 
-@api.route("/api/<int:story_id>/goals", methods=["GET"])
-def view_goals(story_id):
-
-    return jsonify([*map(goal_serializer, Story.query.filter_by(id = story_id).first().goals)])
+    return jsonify([*map(story_serializer, story_records)])
 
 @api.route("/api/<int:story_id>/story", methods=["GET"])
 def view_story(story_id):
@@ -54,7 +51,14 @@ def edit_story(story_id):
 @api.route("/api/<int:story_id>/create", methods=["POST"])
 def create_goal(story_id):
 
-    return "Hellow World"
+    request_message = request.get_json().get('content')
+    goal = Goal(content=request_message)
+
+    story_record = Story.query.filter_by(id = story_id)
+    story_record.goals.add(goal)
+    db.session.commit()
+    
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 @api.route("/api/<int:story_id>/<int:goal_id>", methods=["GET"])
 def view_goal(story_id, goal_id):
@@ -63,12 +67,29 @@ def view_goal(story_id, goal_id):
 
     return jsonify(goal_serializer(goals.filter_by(id = goal_id).first()))
 
-@api.route("/api/<int:story_id>/<int:goal_id>/status", methods=["POST"])
+@api.route("/api/<int:story_id>/<int:goal_id>/edit/status", methods=["POST"])
 def change_goal_status(story_id, goal_id): 
 
-    return "Hello World"
+    status = request.get_json().get('status')
+    goal_reocrd = Goal.query.filter_by(id = goal_id).first()
+    goal_reocrd.status = status
+    db.session.commit()
+
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+
+@api.route("/api/<int:story_id>/<int:goal_id>/edit/content", methods=["POST"])
+def edit_goal(story_id, goal_id): 
+
+    content = request.get_json().get('content')
+    goal_reocrd = Goal.query.filter_by(id = goal_id).first()
+    goal_reocrd.content = content
+
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 @api.route("/api/<int:story_id>/<int:goal_id>/delete", methods=["POST"])
 def delete_goal(story_id, goal_id):
     
-    return "Hello World"
+    goal = Story.query.filter_by(id = goal_id).delete()
+    db.session.commit()
+
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
