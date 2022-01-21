@@ -76,7 +76,7 @@ def delete_goal(story_id, goal_id):
 @api.route("/api/<int:story_id>/delete", methods=["DELETE"])
 def delete_story(story_id):
 
-    story_record = Story.query.filter_by(id = story_id).first()
+    story_record = Story.query.filter_by(id = story_id)
     
     story_record.delete()
     db.session.commit()

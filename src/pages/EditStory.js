@@ -1,5 +1,10 @@
 import React, { useContext } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from "react-router-dom";
 import { useState, useEffect } from "react/cjs/react.development";
 import Button from "../components/Button/Button";
 import styles from "./EditStory.module.css";
@@ -9,6 +14,7 @@ function EditStory(props) {
   const location = useLocation();
   let navigate = useNavigate();
   console.log(location);
+  const [CurrentStory, setCurrentStory] = useOutletContext();
   const [story, setStory] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [submittedStory, setSubmittedStory] = useState("");
@@ -16,7 +22,7 @@ function EditStory(props) {
   async function handleDelete(event) {
     event.preventDefault();
     await fetch(`/api/${story_id}/delete`, {
-      method: "POST",
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
@@ -31,7 +37,7 @@ function EditStory(props) {
       alert("Please enter a message.");
     } else {
       fetch(`/api/${story_id}/edit`, {
-        method: "POST",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
@@ -39,6 +45,8 @@ function EditStory(props) {
           content: story,
         }),
       });
+
+      setCurrentStory({ content: story, id: story_id });
       setSubmittedStory(story);
       setSuccessful(true);
       event.preventDefault();
