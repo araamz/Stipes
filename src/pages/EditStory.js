@@ -1,10 +1,5 @@
 import React, { useContext } from "react";
-import {
-  useLocation,
-  useNavigate,
-  useOutletContext,
-  useParams,
-} from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { useState, useEffect } from "react/cjs/react.development";
 import Button from "../components/Button/Button";
 import styles from "./EditStory.module.css";
@@ -44,6 +39,7 @@ function EditStory(props) {
           content: submittedStory,
         }),
       });
+      event.preventDefault();
       setStory({ content: submittedStory, id: story_id });
       setSuccessful(true);
     }

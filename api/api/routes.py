@@ -31,7 +31,7 @@ def view_goals(story_id):
 @api.route("/api/<int:story_id>/goals/<int:goal_id>", methods=["GET"])
 def view_goal(story_id, goal_id):
 
-    goal_records = Story.query.filter_by(id = story_id).goals
+    goal_records = Story.query.filter_by(id = story_id).first().goals
     goal_record = goal_records.filter_by(id = goal_id).first()
 
     return jsonify(goal_serializer(goal_record))
@@ -41,7 +41,7 @@ def change_goal_status(story_id, goal_id):
 
     status = request.get_json().get('status')
 
-    goal_records = Story.query.filter_by(id = story_id).goals
+    goal_records = Story.query.filter_by(id = story_id).first().goals
     goal_record = goal_records.filter_by(id = goal_id).first()
     goal_record.status = status
 
@@ -49,12 +49,12 @@ def change_goal_status(story_id, goal_id):
 
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
-@api.route("/api/<int:story_id>/<int:goal_id>/edit/content", methods=["PATCH"])
+@api.route("/api/<int:story_id>/goals/<int:goal_id>/edit/content", methods=["PATCH"])
 def edit_goal(story_id, goal_id): 
 
-    content = request.get_json().get('status')
+    content = request.get_json().get('content')
 
-    goal_records = Story.query.filter_by(id = story_id).goals
+    goal_records = Story.query.filter_by(id = story_id).first().goals
     goal_record = goal_records.filter_by(id = goal_id).first()
     goal_record.content = content
 
@@ -62,11 +62,11 @@ def edit_goal(story_id, goal_id):
 
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
-@api.route("/api/<int:story_id>/<int:goal_id>/delete", methods=["POST"])
+@api.route("/api/<int:story_id>/goals/<int:goal_id>/delete", methods=["DELETE"])
 def delete_goal(story_id, goal_id):
     
-    goal_records = Story.query.filter_by(id = story_id).goals
-    goal_record = goal_records.filter_by(id = goal_id).first()
+    goal_records = Story.query.filter_by(id = story_id).first().goals
+    goal_record = goal_records.filter_by(id = goal_id)
 
     goal_record.delete()
     db.session.commit()
