@@ -1,0 +1,23 @@
+@media only screen and (min-width: 300px) {
+  .Toast {
+    padding: 6px;
+    border-radius: var(--border-radius-default);
+    background: black;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-small);
+    width: 100%;
+  }
+  .Toast > span {
+    font-size: 20px;
+    color: white;
+  }
+  .Toast > p {
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+}
