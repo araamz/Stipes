@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./index.css";
-import ViewStory from "./pages/ViewStory";
-import CreateStory from "./pages/CreateStory";
-import ViewGoal from "./pages/ViewGoal";
-import ViewGoals from "./pages/ViewGoals";
-import EditStory from "./pages/EditStory";
-import CreateGoal from "./pages/CreateGoal";
-import ViewStories from "./pages/ViewStories";
+import ViewStory from "./pages/ViewStory/ViewStory";
+import CreateStory from "./pages/CreateStory/CreateStory";
+import ViewGoal from "./pages/ViewGoal/ViewGoal";
+import ViewGoals from "./pages/ViewGoals/ViewGoals";
+import EditStory from "./pages/EditStory/EditStory";
+import CreateGoal from "./pages/CreateGoal/CreateGoal";
+import ViewStories from "./pages/ViewStories/ViewStories";
 import App from "./App";
 
 ReactDOM.render(

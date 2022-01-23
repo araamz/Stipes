@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+# Stipes
 
-## Backend
+A task management application built using React and Flask. The application features routing to different pages, CRUD methodology, and basic responsive design.
+
+## Installing Stipes
+
+## Frontend Design
+
+## Backend Design
 
 ### Backend Routes and Endpoints
 

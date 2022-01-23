@@ -13,7 +13,6 @@ function SectionNavLink(props) {
           ? `${styles.active} ${styles.SectionNavLink}`
           : `${styles.SectionNavLink}`
       }
-      style={props.color ? { background: props.color } : {}}
     >
       {props.icon ? <span className="material-icons"> {props.icon} </span> : ""}
       <p>{props.children}</p>

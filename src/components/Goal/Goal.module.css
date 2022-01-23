@@ -15,15 +15,6 @@
   .story:hover {
     box-shadow: 0 2px 5px 1px lightgray;
   }
-  .todo {
-    background: #ffcdd2;
-  }
-  .inprogress {
-    background: #ffe0b2;
-  }
-  .completed {
-    background: #c8e6c9;
-  }
 }
 
 @media only screen and (min-width: 600px) {

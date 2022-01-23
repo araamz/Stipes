@@ -1,16 +1,9 @@
 @media only screen and (min-width: 300px) {
   .Button {
-    background: #90a4ae;
-    text-decoration: none !important;
     display: flex;
     width: fit-content;
-    padding: 6px;
-    gap: 5px;
+    gap: var(--space-small);
     align-items: center;
-    border-radius: 4px;
-    outline: none;
-    transition: ease-out box-shadow 1s;
-    border: none;
   }
   .Button > p {
     color: white;
