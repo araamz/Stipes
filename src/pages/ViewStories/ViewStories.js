@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Story from "../../components/Story/Story";
+import Card from "../../components/Card/Card";
 import styles from "./ViewStories.module.css";
 
 function ViewStories(props) {
@@ -17,9 +17,9 @@ function ViewStories(props) {
   return (
     <div className={styles.ViewStories}>
       {stories.map((story) => (
-        <Story to={`/${story.id}`} key={story.id}>
+        <Card to={`/${story.id}`} key={story.id}>
           {story.content}
-        </Story>
+        </Card>
       ))}
     </div>
   );

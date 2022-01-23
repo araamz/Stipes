@@ -18,27 +18,26 @@ function ViewStory(props) {
 
   return (
     <div className="page_layout_utility">
-      <p className="page-subtitle">
-        <span className="bold"> User Story: </span> {story.content} (ID-
+      <p>
+        <span className="bold_text_utility"> User Story: </span> {story.content}{" "}
+        (ID-
         {story.id})
       </p>
       <nav>
-        <SectionNavLink to="/" icon="list" color="#FFB74D">
+        <SectionNavLink to="/" icon="list">
           View Stories
         </SectionNavLink>
-        <SectionNavLink to={`/${story_id}`} icon="list" color="#FFB74D">
+        <SectionNavLink to={`/${story_id}`} icon="list">
           View Goals
         </SectionNavLink>
-        <SectionNavLink to={`/${story_id}/edit`} icon="edit" color="#90A4AE">
+        <SectionNavLink to={`/${story_id}/edit`} icon="edit">
           Edit Story
         </SectionNavLink>
-        <SectionNavLink to={`/${story_id}/create`} icon="edit" color="#81C784">
+        <SectionNavLink to={`/${story_id}/create`} icon="edit">
           Create Goal
         </SectionNavLink>
       </nav>
-      <div className="page-section">
-        <Outlet context={[story, setStory]}></Outlet>
-      </div>
+      <Outlet context={[story, setStory]}></Outlet>
     </div>
   );
 }

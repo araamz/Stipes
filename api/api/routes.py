@@ -10,7 +10,7 @@ from api.serializers import goal_serializer
 @api.route("/api", methods=["GET"])
 def view_stories():
     
-    story_records = Story.query.all()
+    story_records = db.session.query(Story).all()
 
     return jsonify([*map(story_serializer, story_records)])
 
@@ -76,9 +76,9 @@ def delete_goal(story_id, goal_id):
 @api.route("/api/<int:story_id>/delete", methods=["DELETE"])
 def delete_story(story_id):
 
-    story_record = Story.query.filter_by(id = story_id)
+    story_record = db.session.query(Story).filter(Story.id == story_id).first()
     
-    story_record.delete()
+    db.session.delete(story_record)
     db.session.commit()
 
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'}

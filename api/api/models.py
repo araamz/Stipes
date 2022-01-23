@@ -7,7 +7,7 @@ class Story(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, nullable=False)
 
-    goals = db.relationship("Goal", backref="story", lazy="dynamic", cascade="all, delete-orphan")
+    goals = db.relationship("Goal", backref="story", lazy="dynamic", cascade="all, delete")
 
     def __repr__(self):
         return f'<Story - {self.finished}> {self.content}' 

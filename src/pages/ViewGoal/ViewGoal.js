@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react/cjs/react.development";
 import Button from "../../components/Button/Button";
+import Toast from "../../components/Toast/Toast";
 import styles from "./ViewGoal.module.css";
 
 function ViewGoal(props) {
@@ -25,13 +26,15 @@ function ViewGoal(props) {
       });
   }, []);
 
-  function goal_background() {
-    if (status === "D") {
-      return styles.todo;
-    } else if (status === "P") {
-      return styles.inprogress;
-    } else if (status === "C") {
-      return styles.completed;
+  function set_background(status) {
+    if (status == "D") {
+      return "todo_background_utility";
+    } else if (status == "P") {
+      return "inprogress_background_utility";
+    } else if (status == "C") {
+      return "completed_background_utility";
+    } else {
+      return "";
     }
   }
 
@@ -81,16 +84,11 @@ function ViewGoal(props) {
   }
 
   return (
-    <div className={`${styles.ViewGoal} ${goal_background()}`}>
-      <p>{content}</p>
-      {successful ? (
-        <p className={styles.submit_successful}>
-          Goal edit "{submittedContent}" was successful.
-        </p>
-      ) : (
-        ""
-      )}
-      <form className={styles.radio}>
+    <div className="section_layout_utility">
+      <p className={`${styles.goal_text} ${set_background(status)}`}>
+        <span className="bold_text_utility">Goal:</span> {content}
+      </p>
+      <form className={styles.status_radio}>
         <div>
           <input
             type="radio"
@@ -122,16 +120,23 @@ function ViewGoal(props) {
           <label>Completed</label>
         </div>
       </form>
-      <textarea
-        onChange={handleChange_content}
-        value={submittedContent}
-        className={styles.textarea}
-      />
-      <div className={styles.options}>
-        <Button type="submit" color="#81C784" onClick={handleSubmit}>
+      <textarea onChange={handleChange_content} value={submittedContent} />
+      <Toast display={successful}>
+        Goal edit "{submittedContent}" was successful.
+      </Toast>
+      <div className={styles.goal_buttons}>
+        <Button
+          icon="edit"
+          className={styles.edit_button}
+          onClick={handleSubmit}
+        >
           Edit
         </Button>
-        <Button color="#E57373" onClick={handleDelete}>
+        <Button
+          icon="delete"
+          className={styles.delete_button}
+          onClick={handleDelete}
+        >
           Delete
         </Button>
       </div>

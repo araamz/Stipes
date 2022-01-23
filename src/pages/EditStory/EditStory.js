@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { useState, useEffect } from "react/cjs/react.development";
+import Toast from "../../components/Toast/Toast";
 import Button from "../../components/Button/Button";
 import styles from "./EditStory.module.css";
 
@@ -46,28 +47,29 @@ function EditStory(props) {
   }
 
   return (
-    <div className={styles.EditStory}>
+    <div className="section_layout_utility">
       <p>
-        Edit or Delete a user story with the following options below. Stories
-        can be edited using the textform below.
+        <span className="bold_text_utility">Instructions:</span> Edit or Delete
+        a user story with the following options below. Stories can be edited
+        using the textform below.
       </p>
-      {successful ? (
-        <p className={styles.submit_successful}>
-          Story edit "{submittedStory}" was successful.
-        </p>
-      ) : (
-        ""
-      )}
-      <textarea
-        onChange={handleChange}
-        value={submittedStory}
-        className={styles.textarea}
-      />
-      <div className={styles.options}>
-        <Button type="submit" color="#81C784" onClick={handleSubmit}>
+      <textarea onChange={handleChange} value={submittedStory} />
+      <Toast display={successful}>
+        Creation of the story "{submittedStory}" was successful.
+      </Toast>
+      <div className={styles.story_buttons}>
+        <Button
+          icon="edit"
+          className={styles.edit_button}
+          onClick={handleSubmit}
+        >
           Edit
         </Button>
-        <Button color="#E57373" onClick={handleDelete}>
+        <Button
+          icon="delete"
+          className={styles.delete_button}
+          onClick={handleDelete}
+        >
           Delete
         </Button>
       </div>

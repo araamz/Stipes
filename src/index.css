@@ -11,6 +11,8 @@
     --space-small: 4px;
     --space-medium: 8px;
     --space-large: 12px;
+
+    --border-radius-default: 4px;
   }
 
   .todo_background_utility {
@@ -32,9 +34,6 @@
   .subtitle_text_utility {
     font-size: 18px;
     font-weight: 700;
-  }
-  .radius_border_utility {
-    border-radius: 4px;
   }
   .page_layout_utility {
     margin: 50px auto 0 auto;
@@ -75,6 +74,7 @@
     outline: none;
     padding: 6px;
     transition: ease-out box-shadow 1s;
+    border-radius: var(--border-radius-default);
   }
   nav {
     display: flex;

@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../../components/Button/Button";
+import Toast from "../../components/Toast/Toast";
 import styles from "./CreateStory.module.css";
 
 class CreateStory extends React.Component {
@@ -43,25 +44,20 @@ class CreateStory extends React.Component {
 
   render() {
     return (
-      <div className={`section_layout_utility`}>
+      <div className="section_layout_utility">
         <p>
-          <span className="bold_text_utility">Instructions: </span>Creating a
+          <span className="bold_text_utility">Instructions:</span> Creating a
           user story entails the format of "As a (description of user), I want
           (functionality) so that (benefit)." This format is a common convention
           to create a new User Story.
         </p>
-        {this.state.successful ? (
-          <p className={styles.submit_successful}>
-            Creation of the story "{this.state.submittedStory}" was successful.
-          </p>
-        ) : (
-          ""
-        )}
         <textarea value={this.state.story} onChange={this.handleChange} />
+        <Toast display={this.state.successful}>
+          Creation of the story "{this.state.submittedStory}" was successful.
+        </Toast>
         <Button
-          type="submit"
           icon="add"
-          className={`${styles.submit_button}`}
+          className={styles.submit_button}
           onClick={this.handleSubmit}
         >
           Create

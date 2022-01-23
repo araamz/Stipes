@@ -1,67 +1,42 @@
 @media only screen and (min-width: 300px) {
-  .ViewGoal {
-    border-radius: 4px;
-    padding: 10px;
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-  }
-  .ViewGoal > p {
-    font-size: 20px;
-    font-weight: 700;
-  }
-  .radio {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .radio > div {
-    display: flex;
-    gap: 5px;
+  .goal_text {
+    padding: 6px;
+    border-radius: var(--border-radius-default);
   }
 
-  .radio > div > label {
+  .status_radio {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-medium);
+  }
+  .status_radio > div {
+    display: flex;
+    gap: var(--space-small);
+  }
+  .status_radio > div > label {
     font-family: "PT Sans", sans-serif;
     font-size: 15px;
   }
-  .radio > div > input {
+  .status_radio > div > input {
     font-family: "PT Sans", sans-serif;
     font-size: 15px;
   }
 
-  .textarea {
-    width: 100%;
-    background: none;
-    outline: none;
-    text-decoration: none;
-    border: none;
-    resize: none;
-    font-size: 24px;
-    padding: 0;
-    border-bottom: solid 2px gray;
-  }
-  .options {
+  .goal_buttons {
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: var(--space-medium);
   }
-  .todo {
-    background: #ffcdd2;
+  .edit_button {
+    background: var(--color-green);
   }
-  .inprogress {
-    background: #ffe0b2;
-  }
-  .completed {
-    background: #c8e6c9;
-  }
-  .submit_successful {
-    color: #81c784;
-    background: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 15px !important;
+  .delete_button {
+    background: var(--color-red);
   }
 }
 
 @media only screen and (min-width: 600px) {
+  .status_radio {
+    flex-direction: row;
+  }
 }

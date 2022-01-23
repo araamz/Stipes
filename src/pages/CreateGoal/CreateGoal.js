@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../../components/Button/Button";
+import Toast from "../../components/Toast/Toast";
 import styles from "./CreateGoal.module.css";
 import { useParams } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
@@ -34,25 +35,26 @@ function CreateGoal(props) {
   }
 
   return (
-    <div className={styles.CreateGoal}>
+    <div className="section_layout_utility">
       <p>
-        Creating a user goal entails the format of "I need to complete (task) to
-        furthur develop the user story." This format is a common convention to
-        create a new User Goal.
+        <span className="bold_text_utility">Instructions:</span> Creating a user
+        goal entails the format of "I need to complete (task) to furthur develop
+        the user story." This format is a common convention to create a new User
+        Goal.
       </p>
-      {successful ? (
-        <p className={styles.submit_successful}>
-          Creation of the goal "{submittedGoal}" was successful.
-        </p>
-      ) : (
-        ""
-      )}
       <textarea
         className={styles.textarea}
         value={goal}
         onChange={handleChange}
       />
-      <Button type="submit" color="#81C784" onClick={handleSubmit}>
+      <Toast display={successful}>
+        Creation of the goal "{submittedGoal}" was successful.
+      </Toast>
+      <Button
+        icon="add"
+        className={styles.create_button}
+        onClick={handleSubmit}
+      >
         Create
       </Button>
     </div>
