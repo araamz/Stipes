@@ -91,6 +91,8 @@ The application's frontend routing uses React Router to create two differnt page
 
 ## Backend Design
 
+The backend uses Flask to create a REST API used to retrieve and receive JSON objects used for editing records within the provided SQLite database.
+
 ### Database Models
 
 ### Backend Routing
