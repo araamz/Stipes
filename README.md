@@ -99,7 +99,7 @@ The backend uses Flask to create a REST API used to retrieve and receive JSON ob
 
 ### Database Models
 
-The database uses SQLite with two tables stored in the database being **Story** and **Goal** records. The database file itself is named `database.db` and stored within `./api/api` directory. The models used by the ORM are defined within `models.py` with the two models having a one-to-many relationship (a story can have many goals). The models are class-based and have attributes defined within the classes.
+The database uses SQLite with two tables stored in the database being **Story** and **Goal** records. The database file itself is named `database.db` and stored within `./api/api` directory. The models used by the ORM are defined within `models.py` with the two models having a one-to-many relationship (a story can have many goals). The models are class-based and have attributes defined within the classes. Figure 7 gives a overview of the database with a diagram of the database table.
 
 - Story Model
   - **id (integer)**: Used to identify a story and is the primary key for a story record.
@@ -110,6 +110,12 @@ The database uses SQLite with two tables stored in the database being **Story** 
   - **content (String)**: Used to define the goal. This value can not be empty.
   - **status (String)**: Used to define the status of a goal with a one character string. "D" (To-Do) is the default value with two other values being "P" (In-Progress) and "C" (Completed).
   - **story_id (Integer)**: Used to identify the story the goal record is associted to with a foreign key value.
+
+<p align="center">
+    <img src="readme_images/database.png" width="800">
+</p>
+
+**Fig. 7:** Database models with relationships.
 
 ### Backend Routing
 
