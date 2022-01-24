@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
-import SectionNavLink from "../../components/SectionNavLink/SectionNavLink";
+import { default as NavLink } from "../../components/SectionNavLink/SectionNavLink";
 
 function ViewStory(props) {
   let { story_id } = useParams();
@@ -30,18 +30,18 @@ function ViewStory(props) {
         {`${story.content} (ID-${story.id})`}
       </p>
       <nav>
-        <SectionNavLink to="/" icon="list">
+        <NavLink to="/" icon="list">
           View Stories
-        </SectionNavLink>
-        <SectionNavLink to={`/${story_id}`} icon="list">
+        </NavLink>
+        <NavLink to={`/${story_id}`} icon="list">
           View Goals
-        </SectionNavLink>
-        <SectionNavLink to={`/${story_id}/edit`} icon="edit">
+        </NavLink>
+        <NavLink to={`/${story_id}/edit`} icon="edit">
           Edit Story
-        </SectionNavLink>
-        <SectionNavLink to={`/${story_id}/create`} icon="edit">
+        </NavLink>
+        <NavLink to={`/${story_id}/create`} icon="edit">
           Create Goal
-        </SectionNavLink>
+        </NavLink>
       </nav>
       <Outlet context={[story, setStory]}></Outlet>
     </div>

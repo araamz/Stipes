@@ -53,7 +53,22 @@ Tools used to create the application frontend and backend are listed. The full r
 
 ### Installing Stipes
 
+Installing Stipes requires the following software to be installed on the host system:
+
+- Python 3
+- Package Installer for Python (pip)
+- Node Package Manager (npm)
+
 ## Frontend Design
+
+The Frontend Design of the website is composed of a page heading, navigation, and main section. The application takes advantage of outlets and views provided by the React Router to change the experience depending upon the URL. The application uses external fonts to deliver `material-icons` and `PT Sans` from Google Fonts.
+
+Components created to encapsulate functionality and styles are denoted in the following list:
+
+- **Button**: Button does is a `<button>` element with added functionality being a rendered icon if provided to the element. The Button component has the following props `[className, onClick, icon, childern]`.
+- **Card**: Card is a `<Link>` that provides a consistent styling to elements used to show user stories and goals. The Card component has the following props `[className, childern]`.
+- **SectionNavLink**: SectionNavLink is a `<NavLink>` element providing consistent styling with navigation link elements with added functionality such as custom styling for a active URL. SectionNavLink passes props given to the element down to the `<NavLink>` element that ensures default functionality is not removed. The SectionNavLink component has the following props `[to, state, className, icon, childern]`.
+- **Toast**: Toast is a element to deliver messages to the user if enabled through a true/false predicate. Toast element is added to a page where a toast message should appear and appends itself a block element. The Toast component has the following props `[display, childern]`.
 
 ### React Project Configuration
 

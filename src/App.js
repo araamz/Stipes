@@ -1,18 +1,18 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import SectionNavLink from "./components/SectionNavLink/SectionNavLink";
+import { default as NavLink } from "./components/SectionNavLink/SectionNavLink";
 
 function App() {
   return (
     <div className="page_layout_utility">
       <p className="title_text_utility">User Stories</p>
       <nav>
-        <SectionNavLink to="/" icon="list">
+        <NavLink to="/" icon="list">
           View Stories
-        </SectionNavLink>
-        <SectionNavLink to="/create" icon="add">
+        </NavLink>
+        <NavLink to="/create" icon="add">
           New Story
-        </SectionNavLink>
+        </NavLink>
       </nav>
       <Outlet></Outlet>
     </div>
