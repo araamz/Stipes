@@ -2,6 +2,8 @@
 
 A task management application built using React and Flask. The application features routing to different pages, CRUD methodology, and use of CSS media queries. The purpose of Stipes was to learn React and Flask and develop skills using newer features of JavaScript such as arrow functions and the Fetch API provided by ES6. Using the lessons learned I hope to apply them to future projects and enhance my understanding of these frameworks.
 
+### Application Screenshots
+
 <p align="center">
     <img src="readme_images/ViewStories.png" width="800">
 </p>
@@ -38,9 +40,9 @@ A task management application built using React and Flask. The application featu
 
 **Fig. 6:** Showing the create goal page. This is where users can change a goal through a variety of ways. Users can change a goal's status by using the radio buttons, edit a goal, and delete a goal.
 
-## Used Tools
+### Used Tools
 
-Tools used to create the application frontend and backend are listed in the below list. The full requirements for the frontend are listed within _package.json_ and can be installed via `npm install`. The full requirements for the frontend are listed within _requirements.txt_ and can be installed via `pip install -r requirements.txt`.
+Tools used to create the application frontend and backend are listed. The full requirements for the frontend are listed within _package.json_ and can be installed via `npm install`. The full requirements for the frontend are listed within _requirements.txt_ and can be installed via `pip install -r requirements.txt`.
 
 - Frontend
   - React 17.0.2
@@ -49,7 +51,7 @@ Tools used to create the application frontend and backend are listed in the belo
   - Flask 2.0.2
   - Flask-SQLAlchemy 2.5.1
 
-## Installing Stipes
+### Installing Stipes
 
 ## Frontend Design
 
