@@ -61,20 +61,33 @@ Installing Stipes requires the following software to be installed on the host sy
 
 ## Frontend Design
 
-The Frontend Design of the website is composed of a page heading, navigation, and main section. The application takes advantage of outlets and views provided by the React Router to change the experience depending upon the URL. The application uses external fonts to deliver `material-icons` and `PT Sans` from Google Fonts.
+The Frontend Design of the website is composed of a page heading, navigation, and main section. The application takes advantage of outlets and views provided by the React Router to change the experience depending upon the URL. The application uses external fonts to deliver `material-icons` and `PT Sans` from Google Fonts. The application uses JavaScripts native `fetch()` API to make HTTP calls to the Flask backend to send and receive JSON objects. There is minimal error-handling with only application errors being logged to the console.
 
-Components created to encapsulate functionality and styles are denoted in the following list:
+### Custom Components
+
+Components created to encapsulate functionality and styles with most being wrappers to already created components.
 
 - **Button**: Button does is a `<button>` element with added functionality being a rendered icon if provided to the element. The Button component has the following props `[className, onClick, icon, childern]`.
 - **Card**: Card is a `<Link>` that provides a consistent styling to elements used to show user stories and goals. The Card component has the following props `[className, childern]`.
 - **SectionNavLink**: SectionNavLink is a `<NavLink>` element providing consistent styling with navigation link elements with added functionality such as custom styling for a active URL. SectionNavLink passes props given to the element down to the `<NavLink>` element that ensures default functionality is not removed. The SectionNavLink component has the following props `[to, state, className, icon, childern]`.
 - **Toast**: Toast is a element to deliver messages to the user if enabled through a true/false predicate. Toast element is added to a page where a toast message should appear and appends itself a block element. The Toast component has the following props `[display, childern]`.
 
-### React Project Configuration
+### Application Styling
+
+The application uses CSS to ensure consistent styling with universal styling being stored within `index.css` and custom created stylings being located within a component and page `.module.css` file. Ensuring components that use their own stylings but still retain a common theme can use CSS variables defined within `index.css`. Stylings named `*_utility` classes are used along side CSS variables to ensure a consistent experience within the application.
 
 ### Frontend Routing
 
-### Application Styling
+The application's frontend routing uses React Router to create two differnt page with outlets being used to switch nested views in each page. The routing scheme is located within `index.js` and features use of URL parameters and an index route. The URL parameters are **story_id** and **goal_id** and used to identify goals assoicated to user stories and select user stories themselves. The index route is used to display a default view by the parent route which is displayed by the default view for `/` route being the `<App />` component. This page is used to display all user stories. The index route is also included to the second page with `/:story_id` route being the `<ViewGoals />` component. This page is sued to display all the goals associated to the selected user story in the url parameter.
+
+```
+|----/
+|    |----create
+|    |----(story_id)/
+|    |    |----edit
+|    |    |----create
+|    |    |----(goal_id)
+```
 
 ## Backend Design
 
@@ -82,7 +95,7 @@ Components created to encapsulate functionality and styles are denoted in the fo
 
 ### Backend Routing
 
-The application's backend consists of ten points. The routing scheme contains two variables used to identify a specifc goal (with **goal_id**) and a specific story (with **story_id**). All goals have a child to parent relationship with a story. The routing of the backend is delineated by the following code piece below.
+The application's backend consists of ten points. The routing scheme contains two variables used to identify a specifc goal (with **goal_id**) and a specific story (with **story_id**). All goals have a child to parent relationship with a story.
 
 ```
 |----/api/
