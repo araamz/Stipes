@@ -78,7 +78,7 @@ The application uses CSS to ensure consistent styling with universal styling bei
 
 ### Frontend Routing
 
-The application's frontend routing uses React Router to create two differnt page with outlets being used to switch nested views in each page. The routing scheme is located within `index.js` and features use of URL parameters and an index route. The URL parameters are **story_id** and **goal_id** and used to identify goals assoicated to user stories and select user stories themselves. The index route is used to display a default view by the parent route which is displayed by the default view for `/` route being the `<App />` component. This page is used to display all user stories. The index route is also included to the second page with `/:story_id` route being the `<ViewGoals />` component. This page is sued to display all the goals associated to the selected user story in the url parameter.
+The application's frontend routing uses React Router to create two differnt page with outlets being used to switch nested views in each page. The routing scheme is located within `index.js` and features use of URL parameters and an index route. The URL parameters are **story_id** and **goal_id** and used to identify goals assoicated to user stories and select user stories themselves. The index route is used to display a default view by the parent route which is displayed by the default view for `/` route being the `<App />` component. This page is used to display all user stories. The index route is also included to the second page with `/:story_id` route being the `<ViewGoals />` component. This page is used to display all the goals associated to the selected user story in the url parameter.
 
 ```
 |----/
@@ -91,13 +91,29 @@ The application's frontend routing uses React Router to create two differnt page
 
 ## Backend Design
 
-The backend uses Flask to create a REST API used to retrieve and receive JSON objects used for editing records within the provided SQLite database.
+The backend uses Flask to create a REST API used to retrieve and receive JSON objects used for editing records within the provided SQLite database. The backend is divided into three seperate files used to identify the functionality of the functions within each of the files.
+
+- `models.py` is used to define the models the default ORM will use to create the database tables and recrod attributes.
+- `serializers.py` is used to define serializers used to format JSON files for a record.
+- `routes.py` is used define routes and endpoints for the REST API to provide CRUD functionality.
 
 ### Database Models
 
+The database uses SQLite with two tables stored in the database being **Story** and **Goal** records. The database file itself is named `database.db` and stored within `./api/api` directory. The models used by the ORM are defined within `models.py` with the two models having a one-to-many relationship (a story can have many goals). The models are class-based and have attributes defined within the classes.
+
+- Story Model
+  - **id (integer)**: Used to identify a story and is the primary key for a story record.
+  - **content (String)**: Used to define the user story. This value can not be empty.
+  - **goals (relationship)**: Used to define the one-to-many relationship between a Story and its Goals.
+- Goal Model
+  - **id (intger)**: Used to identify a goal and is the primary key for a goal record.
+  - **content (String)**: Used to define the goal. This value can not be empty.
+  - **status (String)**: Used to define the status of a goal with a one character string. "D" (To-Do) is the default value with two other values being "P" (In-Progress) and "C" (Completed).
+  - **story_id (Integer)**: Used to identify the story the goal record is associted to with a foreign key value.
+
 ### Backend Routing
 
-The application's backend consists of ten points. The routing scheme contains two variables used to identify a specifc goal (with **goal_id**) and a specific story (with **story_id**). All goals have a child to parent relationship with a story.
+The application's backend consists of ten points. The routing scheme contains two variables used to identify a specifc goal (with **goal_id**) and a specific story (with **story_id**). The routes are designed to show goals have a child to parent relationship with a story.
 
 ```
 |----/api/
@@ -112,8 +128,6 @@ The application's backend consists of ten points. The routing scheme contains tw
 |    |    |----edit
 |    |----create
 ```
-
-#### Route Descriptions
 
 - `[GET] /api/` is used for getting a JSON list of all story records containing a story's `content` and `id`.
   - `[GET] /api/(story_id)` is used for getting a JSON object of the selected story (using `story_id` url parameter) record containing its `content` attribute.
