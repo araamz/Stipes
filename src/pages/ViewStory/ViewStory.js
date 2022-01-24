@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import SectionNavLink from "../../components/SectionNavLink/SectionNavLink";
 
 function ViewStory(props) {
   let { story_id } = useParams();
   const [story, setStory] = useState({});
+  var base_url = "/api";
 
   useEffect(() => {
-    fetch(`/api/${story_id}`)
+    fetch(`${base_url}/${story_id}`)
       .then((response) => {
-        if (response.ok) {
-          return response.json();
+        if (!response.ok) {
+          throw Error(`${response.statusText} - ${response.status}`);
         }
+        return response.json();
       })
-      .then((data) => setStory(data));
-  }, []);
+      .then((data) => {
+        setStory(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [base_url, story_id]);
 
   return (
     <div className="page_layout_utility">
       <p>
-        <span className="bold_text_utility"> User Story: </span> {story.content}{" "}
-        (ID-
-        {story.id})
+        <span className="bold_text_utility">User Story:</span>{" "}
+        {`${story.content} (ID-${story.id})`}
       </p>
       <nav>
         <SectionNavLink to="/" icon="list">

@@ -1,38 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Toast from "../../components/Toast/Toast";
 import styles from "./CreateGoal.module.css";
-import { useParams } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
 
 function CreateGoal(props) {
   let { story_id } = useParams();
+  const [content, setContent] = useState("");
   const [goal, setGoal] = useState("");
-  const [submittedGoal, setSubmittedGoal] = useState("");
   const [successful, setSuccessful] = useState(false);
+  const base_url = `/api/${story_id}/goals`;
 
-  function handleChange(event) {
-    setGoal(event.target.value);
-  }
-
-  function handleSubmit(event) {
-    if (goal === "") {
+  const content_createHandler = (event) => {
+    event.preventDefault();
+    if (content === "") {
       alert("Please enter a message.");
     } else {
-      fetch(`/api/${story_id}/goals/create`, {
+      fetch(`${base_url}/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          content: goal,
+          content: content,
         }),
-      });
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw Error(`${response.statusText} - ${response.status}`);
+          }
+          setSuccessful(true);
+          setGoal(content);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-    setSuccessful(true);
-    setSubmittedGoal(goal);
-    event.preventDefault();
-  }
+  };
+
+  const content_changeHandler = (event) => {
+    setContent(event.target.value);
+  };
 
   return (
     <div className="section_layout_utility">
@@ -42,18 +50,14 @@ function CreateGoal(props) {
         the user story." This format is a common convention to create a new User
         Goal.
       </p>
-      <textarea
-        className={styles.textarea}
-        value={goal}
-        onChange={handleChange}
-      />
+      <textarea value={content} onChange={content_changeHandler} />
       <Toast display={successful}>
-        Creation of the goal "{submittedGoal}" was successful.
+        Creation of the goal "{goal}" was successful.
       </Toast>
       <Button
         icon="add"
         className={styles.create_button}
-        onClick={handleSubmit}
+        onClick={content_createHandler}
       >
         Create
       </Button>

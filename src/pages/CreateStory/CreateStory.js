@@ -7,40 +7,50 @@ class CreateStory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      content: "",
       story: "",
-      submittedStory: "",
       successful: false,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.content_changeHandler = this.content_changeHandler.bind(this);
+    this.content_createHandler = this.content_createHandler.bind(this);
   }
+  base_url = "/api";
 
-  handleChange(event) {
-    this.setState({
-      story: event.target.value,
-    });
-  }
-
-  handleSubmit(event) {
-    if (this.state.story === "") {
+  content_createHandler = (event) => {
+    event.preventDefault();
+    if (this.state.content === "") {
       alert("Please enter a message.");
     } else {
-      fetch("/api/create", {
+      fetch(`${this.base_url}/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          content: this.state.story,
+          content: this.state.content,
         }),
-      });
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw Error(`${response.statusText} - ${response.status}`);
+          }
+          this.setState({
+            successful: true,
+            story: this.state.content,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-    this.setState({
-      successful: true,
-      submittedStory: this.state.story,
-    });
+  };
+
+  content_changeHandler = (event) => {
     event.preventDefault();
-  }
+    this.setState({
+      content: event.target.value,
+    });
+  };
 
   render() {
     return (
@@ -51,14 +61,17 @@ class CreateStory extends React.Component {
           (functionality) so that (benefit)." This format is a common convention
           to create a new User Story.
         </p>
-        <textarea value={this.state.story} onChange={this.handleChange} />
+        <textarea
+          value={this.state.content}
+          onChange={this.content_changeHandler}
+        />
         <Toast display={this.state.successful}>
-          Creation of the story "{this.state.submittedStory}" was successful.
+          Creation of the story "{this.state.story}" was successful.
         </Toast>
         <Button
           icon="add"
           className={styles.submit_button}
-          onClick={this.handleSubmit}
+          onClick={this.content_createHandler}
         >
           Create
         </Button>

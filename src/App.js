@@ -1,6 +1,5 @@
 import React from "react";
-import { Outlet, Link, Navigate } from "react-router-dom";
-import styles from "./App.module.css";
+import { Outlet } from "react-router-dom";
 import SectionNavLink from "./components/SectionNavLink/SectionNavLink";
 
 function App() {

@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./SectionNavLink.module.css";
 import { NavLink } from "react-router-dom";
+import styles from "./SectionNavLink.module.css";
 
 function SectionNavLink(props) {
   return (

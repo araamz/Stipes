@@ -6,28 +6,36 @@ import styles from "./ViewGoals.module.css";
 function ViewGoals(props) {
   let { story_id } = useParams();
   const [goals, setGoals] = useState([]);
+  const base_url = `/api/${story_id}`;
 
-  function set_background(status) {
-    if (status == "D") {
+  const set_background = (status) => {
+    if (status === "D") {
       return "todo_background_utility";
-    } else if (status == "P") {
+    } else if (status === "P") {
       return "inprogress_background_utility";
-    } else if (status == "C") {
+    } else if (status === "C") {
       return "completed_background_utility";
     } else {
       return "";
     }
-  }
+  };
 
   useEffect(() => {
-    fetch(`/api/${story_id}/goals`)
+    fetch(`${base_url}/goals`)
       .then((response) => {
-        if (response.ok) {
-          return response.json();
+        if (!response.ok) {
+          throw Error(`${response.statusText} - ${response.status}`);
         }
+        return response.json();
       })
-      .then((data) => setGoals(data));
-  }, []);
+      .then((data) => {
+        setGoals(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [base_url]);
+
   return (
     <div className={styles.ViewGoals}>
       {goals.map((goal) => (

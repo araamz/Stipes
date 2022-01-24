@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react/cjs/react.development";
 import Button from "../../components/Button/Button";
 import Toast from "../../components/Toast/Toast";
 import styles from "./ViewGoal.module.css";
@@ -8,42 +7,62 @@ import styles from "./ViewGoal.module.css";
 function ViewGoal(props) {
   let { story_id, goal_id } = useParams();
   let navigate = useNavigate();
+  const [goal, setGoal] = useState("");
   const [content, setContent] = useState("");
-  const [successful, setSuccessful] = useState(false);
   const [status, setStatus] = useState("");
-  const [submittedContent, setSubmittedContent] = useState("");
+  const [successful, setSuccessful] = useState(false);
+  const base_url = `/api/${story_id}/goals/${goal_id}`;
 
-  useEffect(() => {
-    fetch(`/api/${story_id}/goals/${goal_id}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        setContent(data.content);
-        setStatus(data.status);
-      });
-  }, []);
-
-  function set_background(status) {
-    if (status == "D") {
+  const set_background = (status) => {
+    if (status === "D") {
       return "todo_background_utility";
-    } else if (status == "P") {
+    } else if (status === "P") {
       return "inprogress_background_utility";
-    } else if (status == "C") {
+    } else if (status === "C") {
       return "completed_background_utility";
     } else {
       return "";
     }
-  }
+  };
 
-  function handleChange_content(event) {
-    setSubmittedContent(event.target.value);
-  }
+  useEffect(() => {
+    fetch(base_url)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(`${response.statusText} - ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setGoal(data.content);
+        setStatus(data.status);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [base_url]);
 
-  function handleChange_status(event) {
-    fetch(`/api/${story_id}/goals/${goal_id}/edit/status`, {
+  const goal_deleteHandler = (event) => {
+    event.preventDefault();
+    fetch(`${base_url}/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(`${response.statusText} - ${response.status}`);
+        }
+        navigate(`/${story_id}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const status_changeHandler = (event) => {
+    fetch(`${base_url}/edit/status`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -51,42 +70,53 @@ function ViewGoal(props) {
       body: JSON.stringify({
         status: event.target.value,
       }),
-    });
-    setStatus(event.target.value);
-  }
-  function handleSubmit(event) {
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(`${response.statusText} - ${response.status}`);
+        }
+        setStatus(event.target.value);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const content_editHandler = (event) => {
     event.preventDefault();
-    if (submittedContent === "") {
+    if (content === "") {
       alert("Please enter a message.");
     } else {
-      fetch(`/api/${story_id}/goals/${goal_id}/edit/content`, {
+      fetch(`${base_url}/edit/content`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          content: submittedContent,
+          content: content,
         }),
-      });
-      setContent(submittedContent);
-      setSuccessful(true);
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw Error(`${response.statusText} - ${response.status}`);
+          }
+          setGoal(content);
+          setSuccessful(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-  }
-  function handleDelete(event) {
-    event.preventDefault();
-    fetch(`/api/${story_id}/goals/${goal_id}/delete`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    navigate(`/${story_id}`);
-  }
+  };
+
+  const content_changeHandler = (event) => {
+    setContent(event.target.value);
+  };
 
   return (
     <div className="section_layout_utility">
       <p className={`${styles.goal_text} ${set_background(status)}`}>
-        <span className="bold_text_utility">Goal:</span> {content}
+        <span className="bold_text_utility">Goal:</span> {goal}
       </p>
       <form className={styles.status_radio}>
         <div>
@@ -95,7 +125,7 @@ function ViewGoal(props) {
             value="D"
             checked={status === "D"}
             name="status"
-            onChange={handleChange_status}
+            onChange={status_changeHandler}
           />
           <label>To-Do</label>
         </div>
@@ -105,7 +135,7 @@ function ViewGoal(props) {
             value="P"
             checked={status === "P"}
             name="status"
-            onChange={handleChange_status}
+            onChange={status_changeHandler}
           />
           <label>In-Progress</label>
         </div>
@@ -115,27 +145,27 @@ function ViewGoal(props) {
             value="C"
             checked={status === "C"}
             name="status"
-            onChange={handleChange_status}
+            onChange={status_changeHandler}
           />
           <label>Completed</label>
         </div>
       </form>
-      <textarea onChange={handleChange_content} value={submittedContent} />
+      <textarea onChange={content_changeHandler} value={content} />
       <Toast display={successful}>
-        Goal edit "{submittedContent}" was successful.
+        Creation of the goal "{goal}" was successful.
       </Toast>
       <div className={styles.goal_buttons}>
         <Button
           icon="edit"
           className={styles.edit_button}
-          onClick={handleSubmit}
+          onClick={content_editHandler}
         >
           Edit
         </Button>
         <Button
           icon="delete"
           className={styles.delete_button}
-          onClick={handleDelete}
+          onClick={goal_deleteHandler}
         >
           Delete
         </Button>
