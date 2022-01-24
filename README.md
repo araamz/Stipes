@@ -147,3 +147,16 @@ The application's backend consists of ten points. The routing scheme contains tw
     - `[PATCH] /api/(story_id)/edit` is used for patching a story record by editing its `content` attribute.
     - `[POST] /api/(story_id)/create` is used for posting a new goal record to the selected story (using `story_id` url parameter).
   - `[POST] /api/create` is used for posting a new story record.
+
+## Additional Documentation
+
+There is comments used throughout the project containing relevant informaiton to the design of the application not mentioned in the `README.md`.
+
+- `./api/api/__init__.py`
+- `./api/api/models.py`
+- `./api/api/routes.py`
+- `./src/pages/CreateGoal/CreateGoal.js`
+- `./src/pages/CreateStory/CreateStory.js`
+- `./src/pages/ViewStory/ViewStory.js`
+- `./src/pages/EditStory/EditStory.js`
+- `./src/index.js`

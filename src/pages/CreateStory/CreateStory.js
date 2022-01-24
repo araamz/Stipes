@@ -3,6 +3,19 @@ import Button from "../../components/Button/Button";
 import Toast from "../../components/Toast/Toast";
 import styles from "./CreateStory.module.css";
 
+// *** BEGIN "CreateStory.js" DOCUMENTATION ***
+// CreateStory.js is a view used to create stories that are added to
+// the database. This page features the use of the "useState()" hook.
+// This view uses the "fetch()" API to communicate to the backend and
+// POST new story records to the database.
+// * Class Component Explained
+// 1. This component is a class component, this works the same as the
+// CreateGoal.js functional component. This means the entire element
+// is stateful and thus if only one value must be updated within the
+// class component state, it must be passed a object with that
+// specific value to be edited.
+// *** END "CreateStory.js" DOCUMENTATION ***
+
 class CreateStory extends React.Component {
   constructor(props) {
     super(props);
