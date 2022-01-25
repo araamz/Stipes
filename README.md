@@ -70,7 +70,7 @@ It is recommended to install Stipes Unix-based operating system; if your using W
 7. Within the virtual environment, install python-dotenv with `pip install python-dotenv`.
 8. Within the virtual environment, install Flask with `pip install Flask`.
 9. Within the virtual environment, install Flask-SQLAlchemy with `pip install Flask-SQLAlchemy`.
-10. Launch a python shell with `python3`.
+10. Within the virtual environment, Launch a python shell with `python3`.
 11. Within the python shell, import the database object with `from api import db`.
 12. Within the python shell, create the database with `db.create_all()`.
 
