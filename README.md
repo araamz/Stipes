@@ -75,7 +75,7 @@ It is recommended to install Stipes Unix-based operating system; if your using W
 1. Open a terminal window within the root Stipes directory.
 2. Start the react application with `npm start`.
 3. Open a new terminal window within the root Stipes directory.
-4. Change directory to the api folder with `cd /api`.
+4. Change directory to the api folder with `cd api`.
 5. Start the flask application with `flask run`.
 
 ## Frontend Design
