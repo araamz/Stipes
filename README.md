@@ -80,8 +80,9 @@ It is recommended to install Stipes Unix-based operating system; if your using W
 2. Start the react application with `npm start`.
 3. Open a new terminal window within the root Stipes directory.
 4. Change directory to the api folder with `cd api`.
-5. Enter into the virtual environment with `. env/bin/activate`
-6. Start the flask application with `flask run`
+5. Enter into the virtual environment with `. env/bin/activate`.
+6. Start the flask application with `flask run`.
+7. Go to `localhost:3000` to use Stipes.
 
 ## Frontend Design
 
