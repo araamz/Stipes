@@ -65,7 +65,7 @@ It is recommended to install Stipes Unix-based operating system; if your using W
 2. Change directory to be within the Stipes folder with `cd stipes`.
 3. Within the root directory install the required node packages with `npm install`.
 4. Within the root directory install the required python packages with `pip install -r requirements.txt`.
-5. Change directory to be within the api folder with `cd /api`.
+5. Change directory to be within the api folder with `cd api`.
 6. Launch a python shell with `pyhton`
 7. Within the python shell, import the database object with `from api import db`.
 8. Within the python shell, create the database with `db.create_all()`.
