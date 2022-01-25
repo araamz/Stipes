@@ -11,7 +11,7 @@ import ViewStories from "./pages/ViewStories/ViewStories";
 import App from "./App";
 import "./index.css";
 
-// *** BEGIN "EditStory.js" DOCUMENTATION ***
+// *** BEGIN "index.js" DOCUMENTATION ***
 // index.js is a utility file used to setup routes for the
 // router. Using this scheme, the application has two page views
 // being ViewStories and ViewStory. Nested routes within these two
@@ -24,7 +24,7 @@ import "./index.css";
 // page is a template while the parameter can be used to retrieve
 // put into a template. Routes are able to use URL parameters using
 // the "useParams()" hook.
-// *** END "EditStory.js" DOCUMENTATION ***
+// *** END "index.js" DOCUMENTATION ***
 
 ReactDOM.render(
   <React.StrictMode>
