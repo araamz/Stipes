@@ -59,6 +59,25 @@ Installing Stipes requires the following software to be installed on the host sy
 - Package Installer for Python (pip)
 - Node Package Manager (npm)
 
+It is recommended to install Stipes Unix-based operating system; if your using Windows please use WSL2.
+
+1. Clone the repository with `git clone https://github.com/araamz/stipes.git`.
+2. Change directory to be within the Stipes folder with `cd stipes`.
+3. Within the root directory install the required node packages with `npm install`.
+4. Within the root directory install the required python packages with `pip install -r requirements.txt`.
+5. Change directory to be within the api folder with `cd /api`.
+6. Launch a python shell with `pyhton`
+7. Within the python shell, import the database object with `from api import db`.
+8. Within the python shell, create the database with `db.create_all()`.
+
+### Starting Stipes
+
+1. Open a terminal window within the root Stipes directory.
+2. Start the react application with `npm start`.
+3. Open a new terminal window within the root Stipes directory.
+4. Change directory to the api folder with `cd /api`.
+5. Start the flask application with `flask run`.
+
 ## Frontend Design
 
 The Frontend Design of the website is composed of a page heading, navigation, and main section. The application takes advantage of outlets and views provided by the React Router to change the experience depending upon the URL. The application uses external fonts to deliver `material-icons` and `PT Sans` from Google Fonts. The application uses JavaScripts native `fetch()` API to make HTTP calls to the Flask backend to send and receive JSON objects. There is minimal error-handling with only application errors being logged to the console.

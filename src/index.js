@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import "./index.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ViewStory from "./pages/ViewStory/ViewStory";
 import CreateStory from "./pages/CreateStory/CreateStory";
 import ViewGoal from "./pages/ViewGoal/ViewGoal";
@@ -10,6 +9,7 @@ import EditStory from "./pages/EditStory/EditStory";
 import CreateGoal from "./pages/CreateGoal/CreateGoal";
 import ViewStories from "./pages/ViewStories/ViewStories";
 import App from "./App";
+import "./index.css";
 
 // *** BEGIN "EditStory.js" DOCUMENTATION ***
 // index.js is a utility file used to setup routes for the
