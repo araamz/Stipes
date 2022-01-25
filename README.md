@@ -64,11 +64,15 @@ It is recommended to install Stipes Unix-based operating system; if your using W
 1. Clone the repository with `git clone https://github.com/araamz/stipes.git`.
 2. Change directory to be within the Stipes folder with `cd stipes`.
 3. Within the root directory install the required node packages with `npm install`.
-4. Within the root directory install the required python packages with `pip install -r requirements.txt`.
-5. Change directory to be within the api folder with `cd api`.
-6. Launch a python shell with `pyhton`
-7. Within the python shell, import the database object with `from api import db`.
-8. Within the python shell, create the database with `db.create_all()`.
+4. Change directory to be within the api folder with `cd api`.
+5. Make a new python environment with `python3 -m venv env`.
+6. Activate the virtual environment with `. env/bin/activate`.
+7. Within the virtual environment, install python-dotenv with `pip install python-dotenv`.
+8. Within the virtual environment, install Flask with `pip install Flask`.
+9. Within the virtual environment, install Flask-SQLAlchemy with `pip install Flask-SQLAlchemy`.
+10. Launch a python shell with `python3`.
+11. Within the python shell, import the database object with `from api import db`.
+12. Within the python shell, create the database with `db.create_all()`.
 
 ### Starting Stipes
 
@@ -76,7 +80,8 @@ It is recommended to install Stipes Unix-based operating system; if your using W
 2. Start the react application with `npm start`.
 3. Open a new terminal window within the root Stipes directory.
 4. Change directory to the api folder with `cd api`.
-5. Start the flask application with `flask run`.
+5. Enter into the virtual environment with `. env/bin/activate`
+6. Start the flask application with `flask run`
 
 ## Frontend Design
 
