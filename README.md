@@ -42,7 +42,7 @@ A task management application built using React and Flask. The application featu
 
 ### Used Tools
 
-Tools used to create the application frontend and backend are listed. The full requirements for the frontend are listed within _package.json_ and can be installed via `npm install`. The full requirements for the frontend are listed within _requirements.txt_ and can be installed via `pip install -r requirements.txt`.
+Tools used to create the application frontend and backend are listed. The full requirements for the frontend are listed within _package.json_ and can be installed via `npm install`.
 
 - Frontend
   - React 17.0.2
